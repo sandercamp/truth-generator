@@ -18,14 +18,8 @@ export default styled.button`
    
     &:not(:disabled) {
         cursor: pointer;
-    
-        &[aria-disabled="true"] {
-            &:hover, &:focus {
-                cursor: not-allowed;
-            }
-        }
-    
-        &:hover, &[aria-selected="true"] {
+   
+        &:hover {
             background-color: ${({ theme }) => theme.secondaryColor };
         }
     }

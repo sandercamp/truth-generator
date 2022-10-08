@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
-import {fallbackQuotes, fetchGeneric, Quote} from '../../api';
+import { fetchGeneric, Quote } from '../../api';
 
 import Truth from '../atoms/Truth';
 import Button from '../atoms/Button';
@@ -30,7 +30,6 @@ const RandomQuote = ({ className }: JSX.IntrinsicElements['div']) => {
             className={ className }
         >
             <Truth
-                aria-live={ 'polite'}
                 quote={ quote }
             />
 

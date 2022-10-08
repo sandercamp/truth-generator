@@ -30,9 +30,4 @@ export default styled(Default)`
     background-image: url('assets/images/extra-large.jpg');
     background-position: center;
     background-repeat: no-repeat;
-
-    @media only screen and (max-width: 600px) {
-        background-size: cover;
-        background-repeat: no-repeat;
-    }
 `;
