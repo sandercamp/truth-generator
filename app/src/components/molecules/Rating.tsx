@@ -8,9 +8,10 @@ import Star from '../atoms/Star';
 
 type Props = {
     quote: Quote
+    disabled: boolean
 }
 
-const Rating = ({ className, quote }: JSX.IntrinsicElements['div'] & Props) => {
+const Rating = ({ className, quote, disabled }: JSX.IntrinsicElements['div'] & Props) => {
     const theme = useContext(ThemeContext);
     const { findRating, updateRating } = useRatings();
     const [ rating, setRating ] = useState<number>(0);
@@ -33,8 +34,10 @@ const Rating = ({ className, quote }: JSX.IntrinsicElements['div'] & Props) => {
                         fill={ rating >= key ? theme.primaryColor : theme.backgroundColor }
                         stroke={ theme.primaryColor }
                         onClick={ () => {
-                            setRating(key);
-                            updateRating(quote, key);
+                            if (!disabled) {
+                                setRating(key);
+                                updateRating(quote, key);
+                            }
                         } }
                     />
                 ))
@@ -48,20 +51,28 @@ export default styled(Rating)`
     gap:         .2rem;
    
     height: 1.25rem;
-    
-    &:hover {
-        & > svg {
-            cursor: pointer;
-
-            fill: ${({ theme }) => theme.primaryColor };
-        }
-    }
-    
-    & > svg {
-        &:hover {
-            & ~ svg {
-                fill: white };
+      
+    ${({ disabled, theme }) => disabled 
+        ? `
+            cursor: not-allowed;
+            opacity: 0.75
+        `
+        : `
+            &:hover {
+                & > svg {
+                    cursor: pointer;
+        
+                    fill: ${ theme.primaryColor };
+                }
             }
-        }
+        
+            & > svg {
+                &:hover {
+                    & ~ svg {
+                        fill: white;
+                    }
+                }
+            } 
+        `
     }
 `;

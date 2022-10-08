@@ -23,4 +23,10 @@ export default styled.button`
             background-color: ${({ theme }) => theme.secondaryColor };
         }
     }
+    
+    &:disabled {
+        cursor: not-allowed;
+        
+        opacity: 0.75;
+    }
 `;

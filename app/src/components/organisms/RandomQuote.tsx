@@ -13,10 +13,11 @@ const timeInSeconds = (): number => Math.floor(Date.now() / 1000);
 const RandomQuote = ({ className }: JSX.IntrinsicElements['div']) => {
     const [ requestedAt, setRequestedAt ] = useState<number>(timeInSeconds());
     const [ quote, setQuote ] = useState<Quote|null>(null);
+    const [ loading, setLoading ] = useState<boolean>(true);
 
     useEffect(
         () => {
-            fetchGeneric().then(setQuote)
+            fetchGeneric().then(setQuote).finally(() => setLoading(false))
         },
         [ requestedAt ]
     );
@@ -36,6 +37,7 @@ const RandomQuote = ({ className }: JSX.IntrinsicElements['div']) => {
             <Actions>
                 <Button
                     onClick={ () => setRequestedAt(timeInSeconds()) }
+                    disabled={ loading }
                 >
                     Tell me more
                 </Button>
@@ -43,6 +45,7 @@ const RandomQuote = ({ className }: JSX.IntrinsicElements['div']) => {
                 <Rating
                     key={ requestedAt }
                     quote={ quote }
+                    disabled={ loading }
                 />
             </Actions>
         </div>
