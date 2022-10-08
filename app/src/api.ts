@@ -12,8 +12,9 @@ const Quotes = z.object({
 });
 
 export type Quote = z.infer<typeof Quote>;
+export type Quotes = z.infer<typeof Quotes>;
 
-const fallbackQuotes: Array<Quote> = [
+export const fallbackQuotes: Array<Quote> = [
     { message: 'Private jets cost a lot of money.' },
     { message: 'Why can’t we use nuclear weapons?' },
     { message: 'I love the poorly educated.' },
@@ -25,7 +26,7 @@ const randomFallbackQuote = (): Quote => fallbackQuotes[Math.floor(Math.random()
 
 const baseUrl = 'https://api.whatdoestrumpthink.com/api';
 
-export const fetchAll = (): Promise<Array<Quote>> => {
+export const fetchAllGeneric = (): Promise<Array<Quote>> => {
     const url = `${ baseUrl }/v1/quotes`;
 
     return fetch(url)

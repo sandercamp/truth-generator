@@ -1,17 +1,21 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
-import RandomQuote from './components/molecules/RandomQuote';
-import Page from './components/pages/Page';
+import Truths from './components/pages/Truths';
+import * as Providers from './context';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
+
 root.render(
   <React.StrictMode>
-    <Page />
+      <Providers.Theme>
+          <Providers.Ratings>
+              <Truths />
+          </Providers.Ratings>
+      </Providers.Theme>
   </React.StrictMode>
 );
 

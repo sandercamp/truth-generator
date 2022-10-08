@@ -5,13 +5,12 @@ type Props = {
     quote: Quote
 }
 
-const Truth = ({ quote, ...rest }: Props) => (
+const Truth = ({ quote, ...rest }: JSX.IntrinsicElements['span'] & Props) => (
     <span { ...rest }>
-        { quote.message }
+       &ldquo;{ quote.message }&rdquo;
     </span>
-
 );
 
 export default styled(Truth)`
-
+    font-size: 1.5rem;
 `;

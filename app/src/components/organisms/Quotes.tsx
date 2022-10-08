@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-import { fetchAll, Quote } from '../../api';
+import { fetchAllGeneric, Quote } from '../../api';
 
 import Truth from '../atoms/Truth';
 
@@ -9,7 +9,7 @@ const Quotes = () => {
 
     useEffect(
         () => {
-            fetchAll().then(setQuotes)
+            fetchAllGeneric().then(setQuotes)
         },
         [ ]
     );
