@@ -1,5 +1,7 @@
 import { z } from 'zod';
 
+const baseUrl = 'https://api.whatdoestrumpthink.com/api';
+
 const Quote = z.object({
     message: z.string(),
 });
@@ -24,19 +26,19 @@ export const fallbackQuotes: Array<Quote> = [
 
 const randomFallbackQuote = (): Quote => fallbackQuotes[Math.floor(Math.random() * fallbackQuotes.length)];
 
-const baseUrl = 'https://api.whatdoestrumpthink.com/api';
+const handleResponse = (response: Response): Promise<string> => {
+    if (response.status !== 200) {
+        throw new Error(`Expected status 200, received ${ response.status }`);
+    }
+
+    return response.json()
+};
 
 export const fetchAllGeneric = (): Promise<Array<Quote>> => {
     const url = `${ baseUrl }/v1/quotes`;
 
     return fetch(url)
-        .then(response => {
-            if (response.status !== 200) {
-                throw new Error(`Expected status 200, received ${ response.status }`);
-            }
-
-            return response.json()
-        })
+        .then(handleResponse)
         .then(json => Quotes
             .parse(json).messages.non_personalized
             .map(zString => ({ message: zString.toString() }))
@@ -52,7 +54,7 @@ export const fetchGeneric = (): Promise<Quote> => {
     const url = `${ baseUrl }/v1/quotes/random`;
 
     return fetch(url)
-        .then(response => response.json())
+        .then(handleResponse)
         .then(json => Quote.parse(json))
         .catch(e => {
             console.error(e);
@@ -66,7 +68,7 @@ export const fetchPersonal = (name: string): Promise<Quote> => {
     const url = `${ baseUrl }/v1/quotes/personalized?${ query }`;
 
     return fetch(url)
-        .then(response => response.json())
+        .then(handleResponse)
         .then(json => Quote.parse(json))
         .catch(e => {
             console.error(e);

@@ -18,7 +18,7 @@ export default styled.button`
    
     &:not(:disabled) {
         cursor: pointer;
-   
+    
         &:hover {
             background-color: ${({ theme }) => theme.secondaryColor };
         }
