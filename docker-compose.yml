@@ -11,5 +11,5 @@ services:
       - ./app:/home/node/app
     ports:
       - "3000:3000"
-    command: ["yarn", "start"]
+    command: bash -c "yarn install && yarn start"
     user: "1000:1000"
