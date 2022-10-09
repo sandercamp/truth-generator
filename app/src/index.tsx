@@ -10,13 +10,11 @@ const root = ReactDOM.createRoot(
 );
 
 root.render(
-  <React.StrictMode>
-      <Providers.Theme>
-          <Providers.Ratings>
-              <Truths />
-          </Providers.Ratings>
-      </Providers.Theme>
-  </React.StrictMode>
+  <Providers.Theme>
+      <Providers.Ratings>
+          <Truths />
+      </Providers.Ratings>
+  </Providers.Theme>
 );
 
 // If you want to start measuring performance in your app, pass a function

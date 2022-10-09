@@ -8,9 +8,9 @@ In the project directory, you can run:
 
 ### With Docker (Compose)
 
-### `docker-compose up -d`
+### `docker compose up -d`
 
-Spins up a Docker container and automatically runs `yarn start` to run the app in development mode.
+Spins up a Docker container and automatically runs `yarn start` to run the app in development mode. Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 ### Without Docker
 
